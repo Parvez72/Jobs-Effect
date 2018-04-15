@@ -1,0 +1,111 @@
+<div ng-controller="getRegisterDetails">
+    <div class="modal-dialog" role="document" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body formClass">
+                <form class="needs-validation" novalidate id="registerForm" name="registerForm" ng-show="registerShow">
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="firstname">First name</label>
+                            <input type="text" class="form-control" ng-model="userDetails.firstName" id="firstname" pattern="[a-zA-Z0-9\s]{3,}" placeholder="First name" required>
+
+                            <div class="invalid-tooltip">
+                                First Name should contains atleast 3 charcters.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="lastname">Last name</label>
+                            <input type="text" class="form-control" id="lastname" ng-model="userDetails.lastName" pattern="[a-zA-Z0-9\s]{3,}" placeholder="Last name" required>
+
+                            <div class="invalid-tooltip">
+                                Last Name should contains atleast 3 charcters.
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" ng-model="userDetails.email" placeholder="example@domain.com" required>
+
+                            <div class="invalid-tooltip">
+                                Please provide a correct Email Id.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="number">Number</label>
+                            <input type="text" class="form-control" id="number" ng-model="userDetails.phoneNumber" pattern="[0-9]{10}" placeholder="6666666666" required>
+
+                            <div class="invalid-tooltip">
+                                Please provide a valid 10 digit Phone number.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="customFile">Upload CV <span>(.pdf, .doc, .docx  only)</span></label>
+                            <div class="custom-file" id="customFile" lang="es">
+                                <input type="file" accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword" class="custom-file-input form-control-file" ngf-select ng-model="uploadFile" id="cvInputFile" aria-describedby="fileHelp" required onchange="$('#upload-file-info').text($(this).val());">
+                                <label class="custom-file-label" id="upload-file-info"for="cvInputFile">
+                                    Select file...
+                                </label>
+                            </div>
+
+                            <div class="invalid-tooltip">
+                                Please Upload a .pdf, .doc, .docx file only.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="locationState">Select Present Location</label>
+                            <select class="custom-select form-control" id="currentCity" ng-model="userDetails.currentCity" required>
+                                <option disabled selected value>Select City</option>
+                                <option ng-repeat="city in cities|orderBy:'city'" value={{city.city}}>{{city.city}}</option>
+                            </select>
+                        </div>
+
+                        <div class="invalid-tooltip">
+                            Please select a City Name.
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="locationState">Select Preferred Job Location</label>
+                            <select class="custom-select form-control" id="locationState" ng-model="userDetails.jobLocation" required>
+                                <option disabled selected value>Select City</option>
+                                <option ng-repeat="city in cities|orderBy:'city'" value={{city.city}}>{{city.city}}</option>
+                            </select>
+                        </div>
+
+                        <div class="invalid-tooltip">
+                            Please select a City Name.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-outline-danger" data-dismiss="modal">Cancel</button>
+                        <button type="submit" id="submitForm" class="btn btn-secondary btn-outline-success" ng-show="ngShow">Register</button>
+                        <button type="lable" id="submittingForm" class="btn btn-secondary btn-success" data-loading-text=" Processing Order" ng-hide="ngShow"><i class='fa fa-circle-o-notch fa-spin'></i> Submitting</button>
+                    </div>
+                </form>
+                <div class="container successFul" ng-hide="registerHide">
+                    <i class='fa fa-check'></i><br>
+                    <b>Your Details have been submitted successfully</b> <p><span>We will get back to you as soon as we can.</span></p>
+                </div>
+                <div class="container registerError" ng-hide="errorHide">
+                    <i class='fa fa-close'></i><br>
+                    <b>There was some problem while submitting your details</b> <p><span>Please try again after some time.</span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

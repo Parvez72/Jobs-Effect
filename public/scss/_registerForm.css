@@ -1,0 +1,15 @@
+.successFul{
+    text-align: center;
+    color: green;
+    font-size: larger;
+}
+.registerError{
+    text-align: center;
+    color: red;
+    font-size: larger;
+}
+
+.carousel-indicators .active{
+    color: #fed136;
+    background-color: #fed136;
+}
